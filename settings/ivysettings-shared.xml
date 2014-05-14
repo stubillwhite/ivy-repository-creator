@@ -1,0 +1,18 @@
+<ivysettings>
+    <property name="ivy.shared.default.root"             value="${ivy.default.ivy.user.dir}/shared" override="false"/>
+    <property name="ivy.shared.default.ivy.pattern"      value="[organisation]/[module]/[revision]/[type]/[artifact].[ext]" override="false"/>
+    <property name="ivy.shared.default.artifact.pattern" value="[organisation]/[module]/[revision]/[type]/[artifact].[ext]" override="false"/>
+    <resolvers>
+        <filesystem name="shared">
+            <ivy pattern="${ivy.shared.default.root}/${ivy.shared.default.ivy.pattern}" />
+
+            <!-- Included just so ivy.shared.default.artifact.pattern won't be ignored if set -->
+            <artifact pattern="${ivy.shared.default.root}/${ivy.shared.default.artifact.pattern}" />
+
+            <!-- Standard forms -->
+            <artifact pattern="${ivy.shared.default.root}/[organisation]/[module]/[revision]/[type]/[artifact].[ext]"/>
+            <artifact pattern="${ivy.shared.default.root}/[organisation]/[module]/[revision]/[type]/[artifact]-[revision].[ext]"/>
+            <artifact pattern="${ivy.shared.default.root}/[organisation]/[module]/[revision]/[type]/[artifact]-[revision]-[type].[ext]"/>
+        </filesystem>
+    </resolvers>
+</ivysettings>

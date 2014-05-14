@@ -1,0 +1,8 @@
+<ivysettings>
+    <resolvers>
+        <chain name="public">
+            <ibiblio name="maven"   m2compatible="true"/>
+        </chain>
+    </resolvers>
+</ivysettings>
+

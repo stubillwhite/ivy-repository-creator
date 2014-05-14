@@ -1,0 +1,29 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" default="create-repository">
+
+    <property name="repositoryLocation" location="${basedir}/local-repository" />
+    <property name="repositoryPattern"  value="[organisation]/[module]/[revision]/[type]/[artifact]-[revision].[ext]" />
+
+    <macrodef name="retrieve-dependency">
+        <attribute name="org" />
+        <attribute name="name" />
+        <attribute name="rev" />
+        <sequential>
+            <ivy:retrieve inline="true" transitive="true" sync="true"
+                pattern="${repositoryLocation}/${repositoryPattern}"
+                ivypattern="${repositoryLocation}/${repositoryPattern}"
+                organisation="@{org}" module="@{name}" revision="@{rev}" conf="*" />
+        </sequential>
+    </macrodef>
+
+    <target name="create-repository" depends="clean-repository">
+        <ivy:settings file="${basedir}/settings/ivysettings.xml" />
+        <retrieve-dependency org="org.mockito" name="mockito-all"      rev="1.9.5"             />
+        <retrieve-dependency org="org.jacoco"  name="org.jacoco.agent" rev="0.6.2.201302030002" />
+        <retrieve-dependency org="org.jacoco"  name="org.jacoco.ant"   rev="0.6.2.201302030002" />
+    </target>
+
+    <target name="clean-repository">
+        <delete dir="${repositoryLocation}" />
+    </target>
+
+</project>
